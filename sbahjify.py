@@ -10,11 +10,10 @@ import PIL.ImageOps
 
 
 def sbahjify(filename, outname):
+    if (filename.endswith('.py')):
+        return
     print(filename, end=' ... ')
     sys.stdout.flush()
-    if not (filename.endswith('.jpg') or filename.endswith('.jpeg') or filename.endswith('.png')):
-        print('Not a jpg, jpeg or png, skipping.')
-        return
     with open(filename, 'rb') as read_file:
         im = PIL.Image.open(read_file)
         # DO NOT USE CONTOUR, EMBOSS, FIND_EDGES
@@ -39,9 +38,5 @@ def sbahjify(filename, outname):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 0: #some stuff takes first as "sbahjify.py ugh"
-        for arg in sys.argv:
-            sbahjify(arg, "sbah-"+arg)
-    else:
-        for filename in os.listdir('src'):
-            sbahjify(os.path.join('src', filename), os.path.join('dest', filename))
+    for arg in sys.argv:
+        sbahjify(arg, "sbah-"+arg)
