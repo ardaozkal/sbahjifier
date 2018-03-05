@@ -1,6 +1,4 @@
-#!/usr/bin/python2
-from __future__ import print_function
-
+#!/usr/bin/python3
 import os.path
 import sys
 
@@ -18,11 +16,11 @@ def sbahjify(filename, outname):
         im = PIL.Image.open(read_file)
         # DO NOT USE CONTOUR, EMBOSS, FIND_EDGES
 
-        for _ in xrange(2):
+        for _ in range(2):
             im = PIL.ImageOps.equalize(im)  # Drab-ify, but embellish otherwise hidden artifacts
             im = PIL.ImageOps.solarize(im, 250)  # Create weird blotchy artifacts, but inverts huge swaths
             im = PIL.ImageOps.posterize(im, 2)  # Flatten colors
-            for _ in xrange(2):
+            for _ in range(2):
                 im = im.filter(PIL.ImageFilter.SHARPEN)
                 im = im.filter(PIL.ImageFilter.SMOOTH)
                 im = im.filter(PIL.ImageFilter.SHARPEN)
